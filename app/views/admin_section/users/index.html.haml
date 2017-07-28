@@ -1,0 +1,14 @@
+%table.hover
+  %thead
+    %tr
+      %th{ width: '15' } ID
+      %th= t('users.full_name')
+      %th= t('users.email')
+      %th
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= user.full_name
+        %td= user.email
+        %td.actions

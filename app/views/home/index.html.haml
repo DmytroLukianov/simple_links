@@ -1,0 +1,6 @@
+- if current_user.blank?
+  = link_to t('menu.sign_in'), new_user_session_path
+  = link_to t('menu.sign_up'), new_user_registration_path
+- else
+  = current_user.full_name
+  = link_to t('menu.sign_out'), destroy_user_session_path, method: :delete

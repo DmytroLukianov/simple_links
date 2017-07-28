@@ -45,6 +45,16 @@ gem 'devise'
 # HAML templating
 gem 'haml-rails', '~> 0.9'
 
+# Simple form
+gem 'simple_form'
+
+# Templating
+gem 'foundation-rails'
+gem 'autoprefixer-rails'
+
+# For user roles
+gem 'cancancan', '~> 2.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
