@@ -1,6 +1,12 @@
-- if current_user.blank?
-  = link_to t('menu.sign_in'), new_user_session_path
-  = link_to t('menu.sign_up'), new_user_registration_path
-- else
-  = current_user.full_name
-  = link_to t('menu.sign_out'), destroy_user_session_path, method: :delete
+.row
+  .small-12.columns
+    %ul.menu
+      %li{ class: "is-active" }
+        %a Home
+      - if can? :create, Link
+        %li= link_to t('links.new'), new_link_path
+      - if current_user.blank?
+        %li= link_to t('menu.sign_in'), new_user_session_path
+        %li= link_to t('menu.sign_up'), new_user_registration_path
+      - else
+        %li= link_to t('menu.sign_out'), destroy_user_session_path, method: :delete

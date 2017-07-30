@@ -1,0 +1,8 @@
+= simple_form_for @link, url: @link.persisted? ? link_path(@link) : links_path do |f|
+  .row
+    .small-12.columns
+      = f.input :url
+    .small-12.columns
+      = f.input :description, as: :text
+    .small-12.columns.text-right
+      = f.submit t('buttons.save'), class: 'button'

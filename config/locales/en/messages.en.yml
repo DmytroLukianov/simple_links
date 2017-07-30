@@ -1,0 +1,4 @@
+en:
+  messages:
+    errors:
+      not_found: Record not found

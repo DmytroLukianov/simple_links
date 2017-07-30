@@ -1,0 +1,14 @@
+en:
+  links:
+    new: Create link
+    editing: Link editing
+    creation: New link
+    url: Url
+    description: Description
+    tags: Tags
+    successfully_created: Link successfully created
+    creation_error: Error creating link
+    successfully_updated: Link successfully updated
+    updation_error: Error editing link
+    successfully_destroyed: Link successfully destroyed
+    can_not_destroy_because: "Can't delete link because: %{message}"

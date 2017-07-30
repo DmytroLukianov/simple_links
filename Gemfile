@@ -52,8 +52,21 @@ gem 'simple_form'
 gem 'foundation-rails'
 gem 'autoprefixer-rails'
 
+# Flash messages (notifications)
+gem 'izitoast'
+
 # For user roles
 gem 'cancancan', '~> 2.0'
+
+# For admin section
+gem 'rails_admin', '~> 1.2'
+
+# Pagination
+gem 'kaminari-mongoid'
+gem 'kaminari-actionview'
+
+# JQuery
+gem 'jquery-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
