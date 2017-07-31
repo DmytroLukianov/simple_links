@@ -1,0 +1,11 @@
+en:
+  notices:
+    success: 'The action was completed successfully!'
+    notice: '...'
+    warning: Be attentive
+    error: Something went wrong
+    titles:
+      success: ОК
+      notice: Notice
+      warning: Warning!
+      error: ERROR!

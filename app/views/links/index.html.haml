@@ -1,0 +1,15 @@
+.row
+  .small-12.columns
+    - @tags.each do |tag|
+      = link_to tag.title, links_path(tag: tag.id), class: 'label'
+    %hr
+- @links.each do |link|
+  .row
+    .small-12.columns
+      = link_to link.url, link.url
+    .small-12.columns
+      = truncate(link.description, length: 100, separator: ' ')
+    .small-12.columns
+      - link.tags.each do |tag|
+        = link_to tag.title, links_path(tag: tag.id), class: 'label'
+      %hr

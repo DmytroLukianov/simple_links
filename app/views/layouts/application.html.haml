@@ -5,7 +5,7 @@
 
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
 
-    %title= content_for?(:title) ? yield(:title) : "Untitled"
+    %title= content_for?(:title) ? yield(:title) : t('main_title')
 
     = stylesheet_link_tag "application"
     = javascript_include_tag "vendor/modernizr"
@@ -14,5 +14,7 @@
 
   %body
     = render 'partials/flash_messages'
+
+    = render 'layouts/components/menu'
 
     = yield

@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require jquery
 //= require jquery_ujs
+//= require i18n/translations
 //= require foundation
 //= require iziToast
 //= require turbolinks

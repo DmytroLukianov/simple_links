@@ -1,12 +1,18 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[edit update destroy]
 
+  def index
+    @tags = Tag.all
+    @links = params[:tag].present? ? Link.joins(:tags).where(tags: {id: params[:id]}) : Link.all
+  end
+
   def new
     @link = Link.new
   end
 
   def create
     @link = Link.new(link_params)
+    Link::BuildTags.call(@link)
     if @link.save
       flash[:success] = I18n.t('links.successfully_created')
       redirect_to root_path
@@ -41,6 +47,10 @@ class LinksController < ApplicationController
   end
 
   private
+
+  def link_params
+    params.require(:link).permit(:url, :description, :tmp_tags)
+  end
 
   def set_link
     @link = Link.find_by id: params[:id]

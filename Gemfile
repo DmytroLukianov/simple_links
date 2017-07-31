@@ -43,7 +43,8 @@ gem 'figaro'
 gem 'devise'
 
 # HAML templating
-gem 'haml-rails', '~> 0.9'
+gem 'haml', '~> 5.0'
+gem 'haml-rails', '~> 1.0'
 
 # Simple form
 gem 'simple_form'
@@ -67,6 +68,9 @@ gem 'kaminari-actionview'
 
 # JQuery
 gem 'jquery-rails'
+
+# I18n for js
+gem 'i18n-js'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
