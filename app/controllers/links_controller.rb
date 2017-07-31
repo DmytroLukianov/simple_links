@@ -3,7 +3,12 @@ class LinksController < ApplicationController
 
   def index
     @tags = Tag.all
-    @links = params[:tag].present? ? Link.joins(:tags).where(tags: {id: params[:id]}) : Link.all
+    @links =
+      if params[:tag_id].present?
+        Tag.find_by(id: params[:tag_id]).try(:links)
+      else
+        Link.all
+      end
   end
 
   def new

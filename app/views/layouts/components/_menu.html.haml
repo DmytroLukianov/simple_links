@@ -2,7 +2,7 @@
   .small-12.columns
     %ul.menu
       %li{ class: "is-active" }
-        %a Home
+        = link_to t('menu.home'), root_url
       - if can? :create, Link
         %li= link_to t('links.new'), new_link_path
       - if current_user.blank?
