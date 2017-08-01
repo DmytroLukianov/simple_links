@@ -5,11 +5,12 @@ class Link
     end
 
     def call
-      # TODO: add checking for uniqueness
       if link.tmp_tags.present?
+        tmp_tags = []
         link.tmp_tags.split(',').map(&:strip).each do |tag|
-          link.tags.build(title: tag)
+          tmp_tags << Tag.find_or_initialize_by(title: tag)
         end
+        link.assign_attributes(tags: tmp_tags)
       end
     end
 

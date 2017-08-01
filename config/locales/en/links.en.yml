@@ -12,3 +12,4 @@ en:
     updation_error: Error editing link
     successfully_destroyed: Link successfully destroyed
     can_not_destroy_because: "Can't delete link because: %{message}"
+    not_found: Links not found

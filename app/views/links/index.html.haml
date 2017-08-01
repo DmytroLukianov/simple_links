@@ -1,15 +1,26 @@
 .row
-  .small-12.columns
-    - @tags.each do |tag|
-      = link_to tag.title, links_path(tag_id: tag.id), class: 'label'
-    %hr
-- @links.each do |link|
-  .row
+  - if @tags.blank?
+    .small-12.columns.text-center
+      .label.secondary= t('tags.not_found')
+      %hr
+  - else
     .small-12.columns
-      = link_to link.url, link.url
-    .small-12.columns
-      = truncate(link.description, length: 100, separator: ' ')
-    .small-12.columns
-      - link.tags.each do |tag|
+      - @tags.each do |tag|
         = link_to tag.title, links_path(tag_id: tag.id), class: 'label'
       %hr
+- if @links.blank?
+  .small-12.columns.text-center
+    .label.secondary= t('links.not_found')
+    %hr
+- else
+  - @links.each do |link|
+    .row
+      .small-12.columns
+        = link_to link.url, link.url
+      .small-12.columns
+        = truncate(link.description, length: 100, separator: ' ')
+      .small-12.columns
+        - link.tags.each do |tag|
+          = link_to tag.title, links_path(tag_id: tag.id), class: 'label'
+        %hr
+  = paginate @links

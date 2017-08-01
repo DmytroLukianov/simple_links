@@ -72,6 +72,9 @@ gem 'jquery-rails'
 # I18n for js
 gem 'i18n-js'
 
+# Pagination
+gem 'kaminari'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

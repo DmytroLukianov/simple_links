@@ -2,13 +2,15 @@ class LinksController < ApplicationController
   before_action :set_link, only: %i[edit update destroy]
 
   def index
+
     @tags = Tag.all
     @links =
       if params[:tag_id].present?
         Tag.find_by(id: params[:tag_id]).try(:links)
       else
-        Link.all
+        Link.includes(:tags)
       end
+    @links = @links.page(params[:page]).per(params[:per])
   end
 
   def new
@@ -16,6 +18,7 @@ class LinksController < ApplicationController
   end
 
   def create
+    # TODO: Add user for link (owner)
     @link = Link.new(link_params)
     Link::BuildTags.call(@link)
     if @link.save
