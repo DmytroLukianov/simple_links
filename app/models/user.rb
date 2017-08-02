@@ -1,7 +1,7 @@
 class User
   include Mongoid::Document
+  @roles = %w[user admin]
   include Roleable
-  ROLES = %w[user admin].freeze
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -29,10 +29,6 @@ class User
   field :last_name,    type: String
 
   field :role,               type: String, default: 'user'
-
-  def self.roles
-    ROLES
-  end
 
   def full_name
     [first_name, last_name].join(' ')
