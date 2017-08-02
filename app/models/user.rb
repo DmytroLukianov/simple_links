@@ -30,6 +30,8 @@ class User
 
   field :role,               type: String, default: 'user'
 
+  has_many :links
+
   def full_name
     [first_name, last_name].join(' ')
   end

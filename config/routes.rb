@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   authenticated :user do
     resources :links
+    get 'my_links', to: 'links#my'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

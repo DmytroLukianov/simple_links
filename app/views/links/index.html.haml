@@ -18,8 +18,15 @@
 - else
   - @links.each do |link|
     .row
-      .small-12.columns
+      .small-10.columns
         = link_to link.url, link.url
+      .small-2.columns.text-right
+        - if can?(:edit, link)
+          = link_to t('links.edit'), edit_link_path(link)
+        - if can?(:destroy, link)
+          = link_to 'x', link_path(link), method: :delete,
+            data: { confirm: t('links.destroy_confirmation', message: link.url) }
+
       .small-12.columns
         = truncate(link.description, length: 100, separator: ' ')
       .small-12.columns

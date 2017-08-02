@@ -14,3 +14,5 @@ en:
     can_not_destroy_because: "Can't delete link because: %{message}"
     not_found: Links not found
     clear_search: x Clear search
+    destroy_confirmation: You really want delete link "%{message}"
+    my: My links

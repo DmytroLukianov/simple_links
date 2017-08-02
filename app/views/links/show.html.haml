@@ -4,4 +4,12 @@
   .small-12.columns
     = @link.description
   .small-12.columns
-    TAGS
+    - @link.tags.each do |tag|
+      = link_to tag.title, links_path(tag: tag.title), class: 'label'
+    %hr
+  .small-12.columns.text-right
+    - if can?(:edit, @link)
+      = link_to t('links.edit'), edit_link_path(@link), class: 'button small'
+    - if can?(:destroy, @link)
+      = link_to t('links.delete'), link_path(@link), method: :delete, class: 'button small',
+        data: { confirm: t('links.destroy_confirmation', message: @link.url) }

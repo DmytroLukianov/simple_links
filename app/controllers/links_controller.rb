@@ -2,7 +2,6 @@ class LinksController < ApplicationController
   before_action :set_link, only: %i[show edit update destroy]
 
   def index
-
     @tags = Tag.all
     @links =
       if params[:tag].present?
@@ -10,7 +9,7 @@ class LinksController < ApplicationController
       else
         Link.includes(:tags)
       end
-    @links = @links.page(params[:page]).per(params[:per]) unless @links.blank?
+    paginate_links
   end
 
   def new
@@ -18,7 +17,6 @@ class LinksController < ApplicationController
   end
 
   def create
-    # TODO: Add user for link (owner)
     @link = Link.new(link_params)
     Link::BuildTags.(@link)
     if @link.save
@@ -34,7 +32,9 @@ class LinksController < ApplicationController
   end
 
   def update
-    if @link.update(link_params)
+    @link.assign_attributes(link_params)
+    Link::BuildTags.(@link)
+    if @link.save
       flash[:success] = I18n.t('links.successfully_updated')
       redirect_to link_path(@link)
     else
@@ -54,13 +54,24 @@ class LinksController < ApplicationController
     end
   end
 
+  def my
+    @links = current_user.links
+    paginate_links
+    render action: :index
+  end
+
   private
 
   def link_params
     params.require(:link).permit(:url, :description, :tmp_tags)
+      .merge(user_id: current_user.id)
   end
 
   def set_link
     @link = Link.find( params[:id])
+  end
+
+  def paginate_links
+    @links = @links.page(params[:page]).per(params[:per]) unless @links.blank?
   end
 end
