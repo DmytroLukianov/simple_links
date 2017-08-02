@@ -5,3 +5,20 @@
 .main-link {
   font-size: 2em;
 }
+
+a.label {
+  &.active {
+    border: 1px solid $main-color;
+    background-color: transparent;
+    color: $main-color;
+    &:hover,&:focus, &:hover, &:focus {
+      border: 1px solid $main-hover-color;
+      background-color: transparent;
+      color: $main-hover-color;
+    }
+  }
+  &:hover,&:focus, &:hover, &:focus {
+    color: $white;
+    background-color: $main-hover-color;
+  }
+}

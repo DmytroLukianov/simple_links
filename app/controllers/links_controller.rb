@@ -1,16 +1,16 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: %i[edit update destroy]
+  before_action :set_link, only: %i[show edit update destroy]
 
   def index
 
     @tags = Tag.all
     @links =
-      if params[:tag_id].present?
-        Tag.find_by(id: params[:tag_id]).try(:links)
+      if params[:tag].present?
+        Link::FindByTag.(tag_title: params[:tag])
       else
         Link.includes(:tags)
       end
-    @links = @links.page(params[:page]).per(params[:per])
+    @links = @links.page(params[:page]).per(params[:per]) unless @links.blank?
   end
 
   def new
@@ -20,7 +20,7 @@ class LinksController < ApplicationController
   def create
     # TODO: Add user for link (owner)
     @link = Link.new(link_params)
-    Link::BuildTags.call(@link)
+    Link::BuildTags.(@link)
     if @link.save
       flash[:success] = I18n.t('links.successfully_created')
       redirect_to root_path
@@ -61,10 +61,6 @@ class LinksController < ApplicationController
   end
 
   def set_link
-    @link = Link.find_by id: params[:id]
-    if @link.blank?
-      flash[:error] = I18n.t('messages.errors.not_found')
-      redirect_to root_path
-    end
+    @link = Link.find( params[:id])
   end
 end
