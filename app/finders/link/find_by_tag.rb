@@ -5,7 +5,7 @@ class Link
     end
 
     def call
-      Tag.find_by(title: tag_title).try(:links)
+      Tag.find_by(title: tag_title.strip.downcase).try(:links)
     end
 
     private

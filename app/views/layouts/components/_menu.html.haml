@@ -6,6 +6,8 @@
       - if can? :create, Link
         %li= link_to t('links.new'), new_link_path
       - if current_user
+        - if current_user.admin?
+          %li= link_to t('menu.admin_panel'), rails_admin_path
         %li= link_to t('links.my'), my_links_path
       - if current_user.blank?
         %li= link_to t('menu.sign_in'), new_user_session_path

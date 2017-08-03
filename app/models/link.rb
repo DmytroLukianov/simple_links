@@ -19,6 +19,6 @@ class Link
   private
 
   def load_tmp_tags
-    self.tmp_tags = tags.map(&:title).join(', ')
+    self.tmp_tags = tags.map(&:title).join(', ') unless tags.blank?
   end
 end
