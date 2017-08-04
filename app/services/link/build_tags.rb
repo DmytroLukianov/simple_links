@@ -12,6 +12,7 @@ class Link
         end
         link.tags << tmp_tags
       end
+      link
     end
 
     private
